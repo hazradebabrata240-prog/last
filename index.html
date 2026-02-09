@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Scanner 💗</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .heart-bg::before {
+      content: "💖 💗 💕 💓 💞";
+      position: absolute;
+      font-size: 3rem;
+      animation: float 10s linear infinite;
+      opacity: 0.2;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh); }
+      100% { transform: translateY(-100vh); }
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      max-width: 350px;
+      width: 90%;
+    }
+
+    h1 {
+      color: #ff4d6d;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #444;
+    }
+
+    button {
+      margin: 10px;
+      padding: 12px 25px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .yes {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    .no {
+      background: #ccc;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    .big-love {
+      font-size: 2.5rem;
+      color: #ff1e56;
+      animation: pulse 1.2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="card">
+    <h1>💗 Love Scanner 💗</h1>
+    <p id="message">Do you like me?</p>
+    <div id="buttons">
+      <button class="yes" onclick="next('yes')">Yes</button>
+      <button class="no" onclick="next('no')">No</button>
+    </div>
+  </div>
+
+  <script>
+    let stage = 0;
+
+    function next(answer) {
+      const msg = document.getElementById('message');
+      const btns = document.getElementById('buttons');
+
+      if (stage === 0) {
+        if (answer === 'no') {
+          moveNoButton();
+        } else {
+          stage = 1;
+          msg.innerText = "Sure I am an overthinker and I need your attention every day";
+          btns.innerHTML = '<button class="yes" onclick="next(\'yes\')">Yes</button>' +
+                           '<button class="no" onclick="next(\'no\')">No</button>';
+        }
+      }
+      else if (stage === 1) {
+        if (answer === 'no') {
+          moveNoButton();
+        } else {
+          stage = 2;
+          msg.innerText = "I love you Taniii jiii 💖 Will you be my Valentine??";
+          btns.innerHTML = '<button class="yes" onclick="next(\'yes\')">Yes</button>' +
+                           '<button class="no" onclick="next(\'no\')">No</button>';
+        }
+      }
+      else if (stage === 2) {
+        if (answer === 'no') {
+          moveNoButton();
+        } else {
+          msg.innerHTML = '<div class="big-love">I LOVE YOU 💕</div>';
+          btns.innerHTML = '💞💞💞';
+        }
+      }
+    }
+
+    function moveNoButton() {
+      const noBtn = document.querySelector('.no');
+      noBtn.innerText = 'Sure?';
+      noBtn.style.position = 'absolute';
+      noBtn.style.top = Math.random() * 80 + 'vh';
+      noBtn.style.left = Math.random() * 80 + 'vw';
+    }
+  </script>
+</body>
+</html>
